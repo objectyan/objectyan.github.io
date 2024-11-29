@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--begin head-->
+
+<head>
+    <meta charset="utf-8">
+<!--begin title-->
+
+<title>
+    
+    CentOS 7 搭建 IKEv2 VPN 服务 |
+    
+    OY&#39;s Blog</title>
+<!--end title-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--begin mete-->
+
+<meta name="description" content="OY"/>
+
+<meta name="author" content="OY"/>
+
+<!--end mete-->
+<!--begin keywords-->
+<meta name="keywords" content=".Net,.Net Core,ASP.Net,Android,Angular,Apache,Bash,Bubbling,C#,Config,Develop,Docker,EntityFrameworkCore,FTP,Firewall,FontAwesome,GCC,Git,IKEv2,IOS,Javascript,Kotlin,LeonardoFibonacci,Memagent,Memcached,MongoDB,Mono,Monodevelop,MySql,Nginx,NodeJs,OpenVPN,Oracle,PHP,PL/SQL,PPTP,Plug,Python,React Native,SVN,Scrapy,Setting,Swift,Tool,VPN,WebPack,WebPck,Windows Service,kernel,recursion"/>
+<!--end keywords-->
+<!--begin rss-->
+
+<link rel="alternate" href="/atom.xml" title="OY&#39;s Blog" type="application/atom+xml">
+
+<!--end rss-->
+<!--begin favicon-->
+
+<link rel="icon" href="/favicon.ico">
+
+<!--end favicon-->
+<!--begin style-->
+
+<!-- stylesheets list from config.yml -->
+
+<link rel="stylesheet" href="/css/hannah.css">
+
+
+<!--end style-->
+<meta name="generator" content="Hexo 7.3.0"></head>
+<!--end head-->
+<!--begin body-->
+
+<body class="container-fluid">
+
+    <!--begin menu-->
+    <div class="hannah-menu">
+    <i class="fh fh-ravelry fa-2x btn fixed-menu animated bounce" id="btn_menu" aria-hidden="true"></i>
+    <div class="menu-outer container-fluid hide animated" id="div_menu">
+        <div class="row" style="margin-bottom: 5px;">
+            
+            <div class="col-md-offset-2 col-md-3 col-xs-4 text-center left-social">
+                
+                <a target="_blank" href="https://github.com/objectyan" title="GitHub"><i class="fh fh-github"></i></a>
+                
+                <style>
+                    .left-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    .left-social * {
+                        color: #f1ce8e;
+                    }
+
+                    @media (max-width: 767px) {
+                        .left-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+                </style>
+            </div>
+            <!--begin handImg-->
+            <div class="col-md-2 col-xs-4 text-center">
+                
+                <img src="/img/logo.jpg" alt="Head Image" class="img-circle">
+                
+            </div>
+            <!--end handImg-->
+            <div class="col-md-3 col-xs-4 text-center right-social">
+                
+                <style>
+                    .right-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    @media (max-width: 767px) {
+                        .right-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+
+                    .right-social * {
+                        color: #f1ce8e;
+                    }
+                </style>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-push-2 col-xs-12 ">
+                <dl class="menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-bars" aria-hidden="true"></i> Menu
+                    </dt>
+                    <dd class="menu-content-content">
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/" class="btn btn-block">
+                                
+                                <i class="fh fh-ravelry"></i>
+                                Home
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/categories" class="btn btn-block">
+                                
+                                <i class="fh fh-cubes"></i>
+                                Category
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/tags" class="btn btn-block">
+                                
+                                <i class="fh fh-tags"></i>
+                                Tag
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/archives" class="btn btn-block">
+                                
+                                <i class="fh fh-archive"></i>
+                                Archives
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/about" class="btn btn-block">
+                                
+                                <i class="fh fh-about"></i>
+                                About
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/doc" class="btn btn-block">
+                                
+                                <i class="fh fh-document"></i>
+                                Doc
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/plug" class="btn btn-block">
+                                
+                                <i class="fh fh-plug"></i>
+                                Plug
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/sitemap" class="btn btn-block">
+                                
+                                <i class="fh fh-sitemap"></i>
+                                SiteMap
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/atom.xml" class="btn btn-block">
+                                <i class="fh fh-rss" aria-hidden="true"></i> RSS
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-offset-2 col-xs-12 ">
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-cubes" aria-hidden="true"></i> Category
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        <ul class="menu-cate-list"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Algotithm/"><i class="fh fh-cube" aria-hidden="true"></i> Algotithm</a><span class="menu-cate-list-count">2</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Database/"><i class="fh fh-cube" aria-hidden="true"></i> Database</a><span class="menu-cate-list-count">2</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/"><i class="fh fh-cube" aria-hidden="true"></i> Develop</a><span class="menu-cate-list-count">22</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net/"><i class="fh fh-cube" aria-hidden="true"></i> .Net</a><span class="menu-cate-list-count">2</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net/C/"><i class="fh fh-cube" aria-hidden="true"></i> C#</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net-Core/"><i class="fh fh-cube" aria-hidden="true"></i> .Net Core</a><span class="menu-cate-list-count">4</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/ASP-Net/"><i class="fh fh-cube" aria-hidden="true"></i> ASP.Net</a><span class="menu-cate-list-count">1</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Android/"><i class="fh fh-cube" aria-hidden="true"></i> Android</a><span class="menu-cate-list-count">5</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/IOS/"><i class="fh fh-cube" aria-hidden="true"></i> IOS</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/IOS/Swift/"><i class="fh fh-cube" aria-hidden="true"></i> Swift</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/"><i class="fh fh-cube" aria-hidden="true"></i> Javascript</a><span class="menu-cate-list-count">5</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/Angular/"><i class="fh fh-cube" aria-hidden="true"></i> Angular</a><span class="menu-cate-list-count">3</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/WebPack/"><i class="fh fh-cube" aria-hidden="true"></i> WebPack</a><span class="menu-cate-list-count">2</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Python/"><i class="fh fh-cube" aria-hidden="true"></i> Python</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Python/Scrapy/"><i class="fh fh-cube" aria-hidden="true"></i> Scrapy</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/React-Native/"><i class="fh fh-cube" aria-hidden="true"></i> React Native</a><span class="menu-cate-list-count">3</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Docker/"><i class="fh fh-cube" aria-hidden="true"></i> Docker</a><span class="menu-cate-list-count">1</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Git/"><i class="fh fh-cube" aria-hidden="true"></i> Git</a><span class="menu-cate-list-count">3</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Linux/"><i class="fh fh-cube" aria-hidden="true"></i> Linux</a><span class="menu-cate-list-count">13</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Linux/CentOS/"><i class="fh fh-cube" aria-hidden="true"></i> CentOS</a><span class="menu-cate-list-count">9</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Tool/"><i class="fh fh-cube" aria-hidden="true"></i> Tool</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Tool/SVN/"><i class="fh fh-cube" aria-hidden="true"></i> SVN</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Windows/"><i class="fh fh-cube" aria-hidden="true"></i> Windows</a><span class="menu-cate-list-count">2</span></li></ul>
+                    </dd>
+                </dl>
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-tag" aria-hidden="true"></i> Tags
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        <ul class="menu-tag-list" itemprop="keywords"><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Net/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> .Net</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Net-Core/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> .Net Core</a><span class="menu-tag-list-count">4</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/ASP-Net/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> ASP.Net</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Android/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Android</a><span class="menu-tag-list-count">5</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Angular/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Angular</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Apache/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Apache</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Bash/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Bash</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Bubbling/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Bubbling</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/C/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> C#</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Config/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Config</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Develop/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Develop</a><span class="menu-tag-list-count">16</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Docker/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Docker</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/EntityFrameworkCore/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> EntityFrameworkCore</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/FTP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> FTP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Firewall/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Firewall</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/FontAwesome/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> FontAwesome</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/GCC/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> GCC</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Git/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Git</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/IKEv2/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> IKEv2</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/IOS/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> IOS</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Javascript/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Javascript</a><span class="menu-tag-list-count">5</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Kotlin/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Kotlin</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/LeonardoFibonacci/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> LeonardoFibonacci</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Memagent/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Memagent</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Memcached/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Memcached</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/MongoDB/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> MongoDB</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Mono/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Mono</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Monodevelop/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Monodevelop</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/MySql/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> MySql</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Nginx/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Nginx</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/NodeJs/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> NodeJs</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/OpenVPN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> OpenVPN</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Oracle/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Oracle</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PHP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PHP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PL-SQL/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PL/SQL</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PPTP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PPTP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Plug/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Plug</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Python/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Python</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/React-Native/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> React Native</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/SVN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> SVN</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Scrapy/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Scrapy</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Setting/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Setting</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Swift/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Swift</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Tool/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Tool</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/VPN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> VPN</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/WebPack/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> WebPack</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/WebPck/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> WebPck</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Windows-Service/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Windows Service</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/kernel/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> kernel</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/recursion/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> recursion</a><span class="menu-tag-list-count">1</span></li></ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--end menu-->
+
+    <div class="row hannah-body">
+        <div class="col-md-8 col-md-push-2 col-xs-12">
+            <!--begin breadcrumb-->
+            <div class="bread-crumb">
+    <ul class="bread-crumb-menu animated rubberBand">
+        <li><a href="/"><i class="fh fh-ravelry" aria-hidden="true"></i> Home</a></li>
+        
+        <li><a href="/categories/Linux/"><i class="fh fh-cube" aria-hidden="true"></i> Linux</a>
+        </li>
+        
+        <li><a href="/categories/Linux/CentOS/"><i class="fh fh-cube" aria-hidden="true"></i> CentOS</a>
+        </li>
+        
+        <li>
+            
+            <i class="fh fh-newspaper-o" aria-hidden="true"></i>
+            
+            CentOS 7 搭建 IKEv2 VPN 服务
+        </li>
+        
+    </ul>
+    <div class="bread-crumb-search">
+        <div class="search">
+    <i class="fh fh-search icon-search"></i>
+    <input placeholder="Search ..." onkeyup="searchFunc(this,event,'/search.xml')"
+           class="input-search animated fadeInRight"/>
+    <div class="search-result animated fadeInRight">
+        <a class="animated tada col-lg-12 search-result-item result-link" href="/2020/05/19/Linux-VI/">Linux vi 操作</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/05/11/SpiderKeeper-Publish-Scrapy/">SpiderKeeper 部署 Scrapy</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/30/Docker-Add-Registry-Mirrors/">Docker 添加 Registry 镜像</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/26/Liunx-Bash/">Liunx Bash 命令</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/20/Oracle-Edit-Database-File-Path/">Oracle 修改数据库文件大小</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2019/01/02/Android-Add-Dependencies/">Android 添加 Dependencies 报错 Manifest merger failed</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/06/29/Android-Apk-Decompile/">Android APK 反编译</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/06/04/Android-Shortcut-Key/">Android Studio 常用快捷键</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/05/29/Android-Kotlin-Use-Tabs/">TabLayout+ViewPager+Fragment的使用</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/05/15/React-Native-Error/">React Native Error</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/04/27/IOS-Swift-UITable/">IOS Swift UITable 使用</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/03/26/Android-Open-Source-Project/">Android 开源项目</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/02/09/Asp-DotNet-MVC-Webpack/">ASP.NET MVC 使用webpack</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/01/25/CentOS-7-Git-For-Source/">CentOS Git 源码安装</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2017/11/01/React-Natice-Generating-APK/">React Natice Android 版 打包APK</a>
+    </div>
+</div>
+    </div>
+</div>
+            <!--end breadcrumb-->
+            <!--begin body-->
+            <article class="post animated rollIn">
+    <h1 class="post-title">CentOS 7 搭建 IKEv2 VPN 服务</h1>
+    <div class="post-subtitle">
+        
+        <time datetime="2017-04-04T14:30:42.000Z" class="item">
+            <i class="fh fh-calendar" aria-hidden="true"></i>&nbsp;&nbsp;2017-04-04
+        </time>
+        
+        
+        <span class="item">
+      <i class="fh fh-cubes" aria-hidden="true"></i>&nbsp;
+            
+            <a class="label label-primary tags" href="/categories/Linux/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;Linux
+        </a>
+            
+            <a class="label label-primary tags" href="/categories/Linux/CentOS/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;CentOS
+        </a>
+            
+        </span>
+        
+        
+        <span class="item">
+        <i class="fh fh-tags" aria-hidden="true"></i>&nbsp;
+            
+            <a class="label label-info tags" href="/tags/VPN/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;VPN
+            </a>
+            
+            <a class="label label-info tags" href="/tags/IKEv2/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;IKEv2
+            </a>
+            
+            <a class="label label-info tags" href="/tags/Firewall/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;Firewall
+            </a>
+            
+        </span>
+        
+    </div>
+    
+    <h4 id="更新系统安装"><a href="#更新系统安装" class="headerlink" title="更新系统安装"></a>更新系统安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新CentOS系统</span></span><br><span class="line">yum -y update</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装EPEL"><a href="#安装EPEL" class="headerlink" title="安装EPEL"></a>安装EPEL</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装EPEL</span></span><br><span class="line">yum -y install epel-release</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装依赖组件"><a href="#安装依赖组件" class="headerlink" title="安装依赖组件"></a>安装依赖组件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖组件</span></span><br><span class="line">yum -y install gpm-devel pam-devel openssl-devel make gcc</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装Strongswan"><a href="#安装Strongswan" class="headerlink" title="安装Strongswan"></a>安装Strongswan</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Strongswan</span></span><br><span class="line">yum -y install strongswan</span><br><span class="line"><span class="comment"># 为Strongswan添加别名 ipsec</span></span><br><span class="line"><span class="built_in">alias</span> ipsec=<span class="string">&#x27;strongswan&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="生成CA私钥，并使用此私钥自签名生成CA证书"><a href="#生成CA私钥，并使用此私钥自签名生成CA证书" class="headerlink" title="生成CA私钥，并使用此私钥自签名生成CA证书"></a>生成CA私钥，并使用此私钥自签名生成CA证书</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/strongswan &amp;&amp; <span class="built_in">mkdir</span> ca &amp;&amp; <span class="built_in">cd</span> ca</span><br><span class="line">ipsec pki --gen --outform pem &gt; ca.pem</span><br><span class="line">ipsec pki --self --<span class="keyword">in</span> ca.pem --dn <span class="string">&quot;C=[国家名], O=[组织名], CN=[通用名]&quot;</span> --ca --lifetime 3652 --outform pem &gt; ca.cert.pem</span><br></pre></td></tr></table></figure>
+<p><strong><em><code>注：配置中的 C=[国家名], O=[组织名] 值都相同</code></em></strong></p>
+<h4 id="生成服务器私钥，然后从私钥中导出公钥，用CA证书签发服务器证书"><a href="#生成服务器私钥，然后从私钥中导出公钥，用CA证书签发服务器证书" class="headerlink" title="生成服务器私钥，然后从私钥中导出公钥，用CA证书签发服务器证书"></a>生成服务器私钥，然后从私钥中导出公钥，用CA证书签发服务器证书</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ipsec pki --gen --outform pem &gt; server.pem</span><br><span class="line">ipsec pki --pub --<span class="keyword">in</span> server.pem | ipsec pki --issue --lifetime 3652 --cacert ca.cert.pem --cakey ca.pem --dn <span class="string">&quot;C=[国家名], O=[组织名], CN=[IP 或 domain]&quot;</span> --san=<span class="string">&quot;[IP 或 domain]&quot;</span> --flag serverAuth --flag ikeIntermediate --outform pem &gt; server.cert.pem</span><br></pre></td></tr></table></figure>
+
+<h4 id="生成客户端私钥，然后从私钥中导出公钥，用CA证书签发客户端证书"><a href="#生成客户端私钥，然后从私钥中导出公钥，用CA证书签发客户端证书" class="headerlink" title="生成客户端私钥，然后从私钥中导出公钥，用CA证书签发客户端证书"></a>生成客户端私钥，然后从私钥中导出公钥，用CA证书签发客户端证书</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ipsec pki --gen --outform pem &gt; client.pem</span><br><span class="line">ipsec pki --pub --<span class="keyword">in</span> client.pem | ipsec pki --issue --lifetime 3652 --cacert ca.cert.pem --cakey ca.pem --dn <span class="string">&quot;C=[国家名], O=[组织名], CN=[通用名]&quot;</span> --outform pem &gt; client.cert.pem</span><br></pre></td></tr></table></figure>
+
+<h4 id="生成-pkcs12-证书，用来导入手机或电脑。此处需输入密码，此密码用于安装CA证书时使用"><a href="#生成-pkcs12-证书，用来导入手机或电脑。此处需输入密码，此密码用于安装CA证书时使用" class="headerlink" title="生成 pkcs12 证书，用来导入手机或电脑。此处需输入密码，此密码用于安装CA证书时使用"></a>生成 pkcs12 证书，用来导入手机或电脑。此处需输入密码，此密码用于安装CA证书时使用</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -<span class="built_in">export</span> -inkey client.pem -<span class="keyword">in</span> client.cert.pem -name <span class="string">&quot;[此处与第7步中CN同值]&quot;</span> -certfile ca.cert.pem -caname <span class="string">&quot;[CA 证书别名]&quot;</span> -out client.cert.p12</span><br></pre></td></tr></table></figure>
+
+<h4 id="strongswam导入证书"><a href="#strongswam导入证书" class="headerlink" title="strongswam导入证书"></a>strongswam导入证书</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#cacerts  /目录下放置CA证书</span></span><br><span class="line"><span class="comment">#certs    /目录下放置服务器和客户端证书</span></span><br><span class="line"><span class="comment">#private  /目录下放置服务器和客户端私钥</span></span><br><span class="line"><span class="built_in">cp</span> -r ca.cert.pem /etc/strongswan/ipsec.d/cacerts/</span><br><span class="line"><span class="built_in">cp</span> -r server.cert.pem /etc/strongswan/ipsec.d/certs/</span><br><span class="line"><span class="built_in">cp</span> -r server.pem /etc/strongswan/ipsec.d/private/</span><br><span class="line"><span class="built_in">cp</span> -r client.cert.pem /etc/strongswan/ipsec.d/certs/</span><br><span class="line"><span class="built_in">cp</span> -r client.pem /etc/strongswan/ipsec.d/private/</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改strongSwan各组件的通用配置"><a href="#修改strongSwan各组件的通用配置" class="headerlink" title="修改strongSwan各组件的通用配置"></a>修改strongSwan各组件的通用配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt;/etc/strongswan/strongswan.conf &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">charon &#123;</span></span><br><span class="line"><span class="string">    load_modular = yes</span></span><br><span class="line"><span class="string">    duplicheck.enable = no                          #冗余检查关闭，以允许同时连接多个设备</span></span><br><span class="line"><span class="string">        compress = yes                                  #传输启用压缩</span></span><br><span class="line"><span class="string">    plugins &#123;</span></span><br><span class="line"><span class="string">        include strongswan.d/charon/*.conf</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    dns1 = 8.8.8.8                                  #给远程端指定DNS服务器</span></span><br><span class="line"><span class="string">    dns2 = 8.8.4.4</span></span><br><span class="line"><span class="string">    nbns1 = 8.8.8.8                                 # 指定Windows的WINS服务器</span></span><br><span class="line"><span class="string">    nbns2 = 8.8.4.4</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    filelog &#123;                                       #配置strongSwan日志级别和路径</span></span><br><span class="line"><span class="string">            /var/log/strongswan.log &#123;</span></span><br><span class="line"><span class="string">               time_format = %b %e %T</span></span><br><span class="line"><span class="string">               default = 5   # 日志最高等级5</span></span><br><span class="line"><span class="string">               append = no</span></span><br><span class="line"><span class="string">               flush_line = yes</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">include strongswan.d/*.conf</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="修改IPsec相关的配置，定义IKE版本、验证方式、加密方式、连接属性等等"><a href="#修改IPsec相关的配置，定义IKE版本、验证方式、加密方式、连接属性等等" class="headerlink" title="修改IPsec相关的配置，定义IKE版本、验证方式、加密方式、连接属性等等"></a>修改IPsec相关的配置，定义IKE版本、验证方式、加密方式、连接属性等等</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt;/etc/strongswan/ipsec.conf &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">config setup</span></span><br><span class="line"><span class="string">    protostack=netkey</span></span><br><span class="line"><span class="string">    # strictcrlpolicy=yes</span></span><br><span class="line"><span class="string">    listen = [IP 或 domain]</span></span><br><span class="line"><span class="string">    uniqueids = never</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Add connections here.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Sample VPN connections</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#conn sample-self-signed</span></span><br><span class="line"><span class="string">#      leftsubnet=10.1.0.0/16</span></span><br><span class="line"><span class="string">#      leftcert=selfCert.der</span></span><br><span class="line"><span class="string">#      leftsendcert=never</span></span><br><span class="line"><span class="string">#      right=192.168.0.2</span></span><br><span class="line"><span class="string">#      rightsubnet=10.2.0.0/16</span></span><br><span class="line"><span class="string">#      rightcert=peerCert.der</span></span><br><span class="line"><span class="string">#      auto=start</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#conn sample-with-ca-cert</span></span><br><span class="line"><span class="string">#      leftsubnet=10.1.0.0/16</span></span><br><span class="line"><span class="string">#      leftcert=myCert.pem</span></span><br><span class="line"><span class="string">#      right=192.168.0.2</span></span><br><span class="line"><span class="string">#      rightsubnet=10.2.0.0/16</span></span><br><span class="line"><span class="string">#      rightid=&quot;C=CH, O=Linux strongSwan CN=peer name&quot;</span></span><br><span class="line"><span class="string">#      auto=start</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">conn %default                           #默认配置项，其他conn配置项都会调用此默认项</span></span><br><span class="line"><span class="string">    left=%any                           #left表示local，即本地端（服务器端）IP地址；%any是魔数字，表示任意地址</span></span><br><span class="line"><span class="string">    leftsubnet=0.0.0.0/0                #本地端网络，0.0.0.0/0为通配，表示所有IP网段</span></span><br><span class="line"><span class="string">    right=%any                          #right表示remote，即远程端（客户端）IP地址可为任意地址</span></span><br><span class="line"><span class="string">    rightsourceip=10.10.10.0/24         #分配给远程端的虚拟IP地址段，尽量避免使用常用私网地址段以免冲突</span></span><br><span class="line"><span class="string">    dpdaction=clear                     #dpd表示Dead Peer Detection，对端失效检测，clear表示对端失效时关闭连接</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">conn IKEv1-CERT-XAUTH                   #供老版本IOS使用。IKEv1，使用证书和XAUTH验证</span></span><br><span class="line"><span class="string">    keyexchange=ikev1                   #密钥交换使用IKEv1</span></span><br><span class="line"><span class="string">    fragmentation=yes                   #允许分片</span></span><br><span class="line"><span class="string">    leftauth=pubkey                     #本地端使用公钥验证</span></span><br><span class="line"><span class="string">    leftcert=server.cert.pem            #指定本地端证书</span></span><br><span class="line"><span class="string">    rightauth=pubkey                    #远程端使用公钥验证</span></span><br><span class="line"><span class="string">    rightauth2=xauth                    #远程端使用用户账号验证</span></span><br><span class="line"><span class="string">    rightcert=client.cert.pem           #指定远程端证书</span></span><br><span class="line"><span class="string">    auto=add                            #auto定义strongSwan服务启动时该连接的行为，add是添加连接类型但不启动  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">conn IKEv1-PSK-XAUTH                    #供IOS, Android使用。IKEv1，使用预共享密钥和XAUTH验证</span></span><br><span class="line"><span class="string">    keyexchange=ikev1                   #密钥交换使用IKEv1</span></span><br><span class="line"><span class="string">    leftauth=psk                        #本地端使用预共享密钥验证</span></span><br><span class="line"><span class="string">    rightauth=psk                       #远程端使用预共享密钥验证</span></span><br><span class="line"><span class="string">    rightauth2=xauth                    #远程端使用用户账号验证</span></span><br><span class="line"><span class="string">    auto=add                            #strongSwan启动时添加连接类型但不启动</span></span><br><span class="line"><span class="string">    aggressive=yes  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">conn IKEv2-CERT                         #供Windows 7+, Linux使用。IKEv2，使用证书验证</span></span><br><span class="line"><span class="string">    keyexchange=ikev2                   #密钥交换使用IKEv2</span></span><br><span class="line"><span class="string">    leftauth=pubkey                     #本地端使用公钥验证</span></span><br><span class="line"><span class="string">    leftcert=server.cert.pem            #指定本地端证书</span></span><br><span class="line"><span class="string">    rightauth=pubkey                    #远程端使用公钥验证</span></span><br><span class="line"><span class="string">    rightcert=client.cert.pem           #指定远程端证书</span></span><br><span class="line"><span class="string">    auto=add                            #strongSwan启动时添加连接类型但不启动</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">conn IKEv2-EAP                          #供Windows 7+, IOS9+使用。IKEv2，EAP验证</span></span><br><span class="line"><span class="string">    keyexchange=ikev2                   #密钥交换使用IKEv2</span></span><br><span class="line"><span class="string">    ike=aes256-sha1-modp1024,aes128-sha1-modp1024,3des-sha1-modp1024!                #第一阶段加密方式</span></span><br><span class="line"><span class="string">    esp=aes256-sha256,aes256-sha1,3des-sha1!                  #ESP的顺序与IKE一致</span></span><br><span class="line"><span class="string">    rekey=no                            #本地端对Windows远程端发出rekey请求会断开连接，所以需配置为no</span></span><br><span class="line"><span class="string">    leftauth=pubkey                     #本地端使用公钥验证</span></span><br><span class="line"><span class="string">    leftcert=server.cert.pem            #指定本地端证书</span></span><br><span class="line"><span class="string">    leftsendcert=always                 #本地端总是发送证书</span></span><br><span class="line"><span class="string">    leftid=[IP 或 domain]                #本地端标识，使用本地端公网IP地址作为标识，和生成服务器证书时的--san参数对应</span></span><br><span class="line"><span class="string">    rightauth=eap-mschapv2              #远程端使用eap-mschapv2验证</span></span><br><span class="line"><span class="string">    rightsendcert=never                 #不要求远程端发送证书</span></span><br><span class="line"><span class="string">    eap_identity=%any                   #指定EAP验证身份，任意账户</span></span><br><span class="line"><span class="string">    fragmentation=yes                   #允许分片</span></span><br><span class="line"><span class="string">    auto=add                            #strongSwan启动时添加连接类型但不启动</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="定义各类密钥，例如：私钥、预共享密钥、用户账户和密码"><a href="#定义各类密钥，例如：私钥、预共享密钥、用户账户和密码" class="headerlink" title="定义各类密钥，例如：私钥、预共享密钥、用户账户和密码"></a>定义各类密钥，例如：私钥、预共享密钥、用户账户和密码</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt;/etc/strongswan/ipsec.secrets &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">: RSA server.pem                        #指定服务器的RSA私钥文件</span></span><br><span class="line"><span class="string">: PSK &quot;[xxxxxxx]&quot;             #配置预共享密钥</span></span><br><span class="line"><span class="string">[username] : XAUTH &quot;[password]&quot;               #配置XAUTH验证的用户名和密码，可配置多个用户账户</span></span><br><span class="line"><span class="string">[username] : EAP &quot;[password]&quot;                 #配置EAP验证的用户名s和密码，可配置多个用户账户</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="设置ipsec-secrets文件权限"><a href="#设置ipsec-secrets文件权限" class="headerlink" title="设置ipsec.secrets文件权限"></a>设置ipsec.secrets文件权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 600 ipsec.secrets</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置网卡转发"><a href="#设置网卡转发" class="headerlink" title="设置网卡转发"></a>设置网卡转发</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt;/etc/sysctl.conf &lt;&lt;<span class="string">EOF </span></span><br><span class="line"><span class="string">net.ipv4.ip_forward = 1 </span></span><br><span class="line"><span class="string">EOF</span> </span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置防火墙，本处使用的firewalld"><a href="#配置防火墙，本处使用的firewalld" class="headerlink" title="配置防火墙，本处使用的firewalld"></a>配置防火墙，本处使用的firewalld</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install firewall firewall-config</span><br><span class="line">firewall-cmd --permanent --add-service=ipsec</span><br><span class="line">firewall-cmd --permanent --zone=public --add-masquerade</span><br><span class="line">firewall-cmd --permanent --zone=public --add-rich-rule=<span class="string">&#x27;rule family=ipv4 source address=10.8.0.0/24 masquerade&#x27;</span></span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置服务启动"><a href="#配置服务启动" class="headerlink" title="配置服务启动"></a>配置服务启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig strongswan on </span><br><span class="line">chkconfig firewalld on </span><br><span class="line">systemctl start strongswan</span><br></pre></td></tr></table></figure>
+
+<h4 id="strongswan-查看日志状态"><a href="#strongswan-查看日志状态" class="headerlink" title="strongswan 查看日志状态"></a>strongswan 查看日志状态</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前链接数</span></span><br><span class="line">ipsec status</span><br></pre></td></tr></table></figure>
+
+<h4 id="链接VPN的方式"><a href="#链接VPN的方式" class="headerlink" title="链接VPN的方式"></a>链接VPN的方式</h4><ol>
+<li>Windows<ul>
+<li>10 以上的使用IKEv2的方式连接</li>
+<li>10 以下推荐安装官方的strongswan APP链接</li>
+</ul>
+</li>
+<li>IOS<br> IKEv2 链接</li>
+<li>Android<br> 推荐安装官方的strongswan APP链接</li>
+</ol>
+<p><strong><em><code>注：推荐使用IKEv2 不推荐使用 IPSEC、IKE 等等</code></em></strong></p>
+
+</article>
+<ol class="animated rollIn hannah-toc"><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="animated rollIn hannah-toc-text">更新系统安装</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E5%AE%89%E8%A3%85EPEL"><span class="animated rollIn hannah-toc-text">安装EPEL</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E7%BB%84%E4%BB%B6"><span class="animated rollIn hannah-toc-text">安装依赖组件</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E5%AE%89%E8%A3%85Strongswan"><span class="animated rollIn hannah-toc-text">安装Strongswan</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E7%94%9F%E6%88%90CA%E7%A7%81%E9%92%A5%EF%BC%8C%E5%B9%B6%E4%BD%BF%E7%94%A8%E6%AD%A4%E7%A7%81%E9%92%A5%E8%87%AA%E7%AD%BE%E5%90%8D%E7%94%9F%E6%88%90CA%E8%AF%81%E4%B9%A6"><span class="animated rollIn hannah-toc-text">生成CA私钥，并使用此私钥自签名生成CA证书</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E7%94%9F%E6%88%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A7%81%E9%92%A5%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BB%8E%E7%A7%81%E9%92%A5%E4%B8%AD%E5%AF%BC%E5%87%BA%E5%85%AC%E9%92%A5%EF%BC%8C%E7%94%A8CA%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%81%E4%B9%A6"><span class="animated rollIn hannah-toc-text">生成服务器私钥，然后从私钥中导出公钥，用CA证书签发服务器证书</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%A7%81%E9%92%A5%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BB%8E%E7%A7%81%E9%92%A5%E4%B8%AD%E5%AF%BC%E5%87%BA%E5%85%AC%E9%92%A5%EF%BC%8C%E7%94%A8CA%E8%AF%81%E4%B9%A6%E7%AD%BE%E5%8F%91%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AF%81%E4%B9%A6"><span class="animated rollIn hannah-toc-text">生成客户端私钥，然后从私钥中导出公钥，用CA证书签发客户端证书</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E7%94%9F%E6%88%90-pkcs12-%E8%AF%81%E4%B9%A6%EF%BC%8C%E7%94%A8%E6%9D%A5%E5%AF%BC%E5%85%A5%E6%89%8B%E6%9C%BA%E6%88%96%E7%94%B5%E8%84%91%E3%80%82%E6%AD%A4%E5%A4%84%E9%9C%80%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81%EF%BC%8C%E6%AD%A4%E5%AF%86%E7%A0%81%E7%94%A8%E4%BA%8E%E5%AE%89%E8%A3%85CA%E8%AF%81%E4%B9%A6%E6%97%B6%E4%BD%BF%E7%94%A8"><span class="animated rollIn hannah-toc-text">生成 pkcs12 证书，用来导入手机或电脑。此处需输入密码，此密码用于安装CA证书时使用</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#strongswam%E5%AF%BC%E5%85%A5%E8%AF%81%E4%B9%A6"><span class="animated rollIn hannah-toc-text">strongswam导入证书</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E4%BF%AE%E6%94%B9strongSwan%E5%90%84%E7%BB%84%E4%BB%B6%E7%9A%84%E9%80%9A%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="animated rollIn hannah-toc-text">修改strongSwan各组件的通用配置</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E4%BF%AE%E6%94%B9IPsec%E7%9B%B8%E5%85%B3%E7%9A%84%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%AE%9A%E4%B9%89IKE%E7%89%88%E6%9C%AC%E3%80%81%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F%E3%80%81%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E3%80%81%E8%BF%9E%E6%8E%A5%E5%B1%9E%E6%80%A7%E7%AD%89%E7%AD%89"><span class="animated rollIn hannah-toc-text">修改IPsec相关的配置，定义IKE版本、验证方式、加密方式、连接属性等等</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E5%AE%9A%E4%B9%89%E5%90%84%E7%B1%BB%E5%AF%86%E9%92%A5%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A%E7%A7%81%E9%92%A5%E3%80%81%E9%A2%84%E5%85%B1%E4%BA%AB%E5%AF%86%E9%92%A5%E3%80%81%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7%E5%92%8C%E5%AF%86%E7%A0%81"><span class="animated rollIn hannah-toc-text">定义各类密钥，例如：私钥、预共享密钥、用户账户和密码</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E8%AE%BE%E7%BD%AEipsec-secrets%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="animated rollIn hannah-toc-text">设置ipsec.secrets文件权限</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%BD%91%E5%8D%A1%E8%BD%AC%E5%8F%91"><span class="animated rollIn hannah-toc-text">设置网卡转发</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%8C%E6%9C%AC%E5%A4%84%E4%BD%BF%E7%94%A8%E7%9A%84firewalld"><span class="animated rollIn hannah-toc-text">配置防火墙，本处使用的firewalld</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8"><span class="animated rollIn hannah-toc-text">配置服务启动</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#strongswan-%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E7%8A%B6%E6%80%81"><span class="animated rollIn hannah-toc-text">strongswan 查看日志状态</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#%E9%93%BE%E6%8E%A5VPN%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="animated rollIn hannah-toc-text">链接VPN的方式</span></a></li></ol>
+<div class="animated bounceInDown paginations">
+    <div class="col-md-8 col-md-push-2 col-xs-12">
+        <nav>
+            
+            <a href="/2017/09/21/Dotnet-Core-Synopsis/" class="prev col-md-2 col-xs-4 text-left">&larr; Prev</a>
+            
+            <span
+                class="page-content col-md-8  col-xs-4 text-center">
+                
+            </span>
+            
+            <a href="/2017/04/04/CentOS-7-VPN-PPTP/" class="next col-md-2 col-xs-4 text-right">Next &rarr;</a>
+            
+        </nav>
+        <div>
+            <div class="col-md-6 col-xs-6 text-left">
+                
+                .Net Core 简介
+                
+            </div>
+            <div class="col-md-6 col-xs-6 text-right">
+                
+                CentOS 7 搭建 PPTP 协议 VPN
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!--end body-->
+            <!--begin comments-->
+            
+<div class="comments">
+    
+
+    
+    
+<div id="gitalk-container">
+</div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script>
+    var loadJs = function (d, a) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document
+            .documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("src", d);
+        if (typeof a === "function") {
+            if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                    var e = b.readyState;
+                    if (e === "loaded" || e === "complete") {
+                        b.onreadystatechange = null;
+                        a()
+                    }
+                }
+            } else {
+                b.onload = a
+            }
+        }
+        c.appendChild(b)
+    };
+    loadJs("https://unpkg.com/gitalk/dist/gitalk.min.js", function () {
+        var gitalk = new Gitalk({
+            clientID: 'e82b50d554e32a851ae7',
+            clientSecret: '95923aeaddb44e6de22d088703c6bbde978f505c',
+            repo: 'objectyan.github.io',
+            owner: 'objectyan',
+            admin: ['objectyan'],
+            id: decodeURIComponent(location.pathname),
+            distractionFreeMode: false
+        })
+
+        gitalk.render('gitalk-container')
+    });
+</script>
+
+</div>
+
+
+            <!--end comments-->
+        </div>
+    </div>
+
+    <!--begin footer-->
+    <footer id="footer" class="footer animated fadeInUp hide">
+    <p><i class="copy">&copy;</i> 2024 1111 <a href="http://objectyan.github.io">OY</a> All Right Reserved.</p>
+    <p>Powered by <a href="http://hexo.io" rel="external nofollow">Hexo</a>. Theme by <a href="https://github.com/objectyan/hexo-theme-hannah" rel="external nofollow">hannah</a></p>
+</footer>
+    <!--end footer-->
+
+    
+    <!-- scripts list from theme config.yml -->
+    
+    <script src="/js/hannah.js"></script>
+    
+    
+    <!--begin analytics-->
+    
+<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?f18fb69801f0f64138e5b6cae4b1c6cc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+    <!--end analytics-->
+</body>
+<!--end body-->
+<!--begin canvas-nest-->
+<script>
+    var nesturl = "https://unpkg.com/canvas-nest.js/dist/canvas-nest.js";
+    var c = document.getElementsByTagName("body")[0] || document.body || document.documentElement;
+    var b = document.createElement("script");
+    b.setAttribute("type", "text/javascript");
+    b.setAttribute("src", nesturl);
+    b.setAttribute("color",
+        `${ Math.floor(Math.random()*256)},${ Math.floor(Math.random()*256)},${ Math.floor(Math.random()*256)}`);
+    b.setAttribute("opacity", Math.random());
+    b.setAttribute("count", parseInt((Math.random() * 500) || 99));
+    c.appendChild(b)
+</script>
+<!--end canvas-nest-->
+
+</html>

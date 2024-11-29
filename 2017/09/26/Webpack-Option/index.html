@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--begin head-->
+
+<head>
+    <meta charset="utf-8">
+<!--begin title-->
+
+<title>
+    
+    Webpack 结构与说明 |
+    
+    OY&#39;s Blog</title>
+<!--end title-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--begin mete-->
+
+<meta name="description" content="OY"/>
+
+<meta name="author" content="OY"/>
+
+<!--end mete-->
+<!--begin keywords-->
+<meta name="keywords" content=".Net,.Net Core,ASP.Net,Android,Angular,Apache,Bash,Bubbling,C#,Config,Develop,Docker,EntityFrameworkCore,FTP,Firewall,FontAwesome,GCC,Git,IKEv2,IOS,Javascript,Kotlin,LeonardoFibonacci,Memagent,Memcached,MongoDB,Mono,Monodevelop,MySql,Nginx,NodeJs,OpenVPN,Oracle,PHP,PL/SQL,PPTP,Plug,Python,React Native,SVN,Scrapy,Setting,Swift,Tool,VPN,WebPack,WebPck,Windows Service,kernel,recursion"/>
+<!--end keywords-->
+<!--begin rss-->
+
+<link rel="alternate" href="/atom.xml" title="OY&#39;s Blog" type="application/atom+xml">
+
+<!--end rss-->
+<!--begin favicon-->
+
+<link rel="icon" href="/favicon.ico">
+
+<!--end favicon-->
+<!--begin style-->
+
+<!-- stylesheets list from config.yml -->
+
+<link rel="stylesheet" href="/css/hannah.css">
+
+
+<!--end style-->
+<meta name="generator" content="Hexo 7.3.0"></head>
+<!--end head-->
+<!--begin body-->
+
+<body class="container-fluid">
+
+    <!--begin menu-->
+    <div class="hannah-menu">
+    <i class="fh fh-ravelry fa-2x btn fixed-menu animated bounce" id="btn_menu" aria-hidden="true"></i>
+    <div class="menu-outer container-fluid hide animated" id="div_menu">
+        <div class="row" style="margin-bottom: 5px;">
+            
+            <div class="col-md-offset-2 col-md-3 col-xs-4 text-center left-social">
+                
+                <a target="_blank" href="https://github.com/objectyan" title="GitHub"><i class="fh fh-github"></i></a>
+                
+                <style>
+                    .left-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    .left-social * {
+                        color: #f1ce8e;
+                    }
+
+                    @media (max-width: 767px) {
+                        .left-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+                </style>
+            </div>
+            <!--begin handImg-->
+            <div class="col-md-2 col-xs-4 text-center">
+                
+                <img src="/img/logo.jpg" alt="Head Image" class="img-circle">
+                
+            </div>
+            <!--end handImg-->
+            <div class="col-md-3 col-xs-4 text-center right-social">
+                
+                <style>
+                    .right-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    @media (max-width: 767px) {
+                        .right-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+
+                    .right-social * {
+                        color: #f1ce8e;
+                    }
+                </style>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-push-2 col-xs-12 ">
+                <dl class="menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-bars" aria-hidden="true"></i> Menu
+                    </dt>
+                    <dd class="menu-content-content">
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/" class="btn btn-block">
+                                
+                                <i class="fh fh-ravelry"></i>
+                                Home
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/categories" class="btn btn-block">
+                                
+                                <i class="fh fh-cubes"></i>
+                                Category
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/tags" class="btn btn-block">
+                                
+                                <i class="fh fh-tags"></i>
+                                Tag
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/archives" class="btn btn-block">
+                                
+                                <i class="fh fh-archive"></i>
+                                Archives
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/about" class="btn btn-block">
+                                
+                                <i class="fh fh-about"></i>
+                                About
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/doc" class="btn btn-block">
+                                
+                                <i class="fh fh-document"></i>
+                                Doc
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/plug" class="btn btn-block">
+                                
+                                <i class="fh fh-plug"></i>
+                                Plug
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/sitemap" class="btn btn-block">
+                                
+                                <i class="fh fh-sitemap"></i>
+                                SiteMap
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/atom.xml" class="btn btn-block">
+                                <i class="fh fh-rss" aria-hidden="true"></i> RSS
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-offset-2 col-xs-12 ">
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-cubes" aria-hidden="true"></i> Category
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        <ul class="menu-cate-list"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Algotithm/"><i class="fh fh-cube" aria-hidden="true"></i> Algotithm</a><span class="menu-cate-list-count">2</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Database/"><i class="fh fh-cube" aria-hidden="true"></i> Database</a><span class="menu-cate-list-count">2</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/"><i class="fh fh-cube" aria-hidden="true"></i> Develop</a><span class="menu-cate-list-count">22</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net/"><i class="fh fh-cube" aria-hidden="true"></i> .Net</a><span class="menu-cate-list-count">2</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net/C/"><i class="fh fh-cube" aria-hidden="true"></i> C#</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net-Core/"><i class="fh fh-cube" aria-hidden="true"></i> .Net Core</a><span class="menu-cate-list-count">4</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/ASP-Net/"><i class="fh fh-cube" aria-hidden="true"></i> ASP.Net</a><span class="menu-cate-list-count">1</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Android/"><i class="fh fh-cube" aria-hidden="true"></i> Android</a><span class="menu-cate-list-count">5</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/IOS/"><i class="fh fh-cube" aria-hidden="true"></i> IOS</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/IOS/Swift/"><i class="fh fh-cube" aria-hidden="true"></i> Swift</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/"><i class="fh fh-cube" aria-hidden="true"></i> Javascript</a><span class="menu-cate-list-count">5</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/Angular/"><i class="fh fh-cube" aria-hidden="true"></i> Angular</a><span class="menu-cate-list-count">3</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/WebPack/"><i class="fh fh-cube" aria-hidden="true"></i> WebPack</a><span class="menu-cate-list-count">2</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Python/"><i class="fh fh-cube" aria-hidden="true"></i> Python</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Python/Scrapy/"><i class="fh fh-cube" aria-hidden="true"></i> Scrapy</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/React-Native/"><i class="fh fh-cube" aria-hidden="true"></i> React Native</a><span class="menu-cate-list-count">3</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Docker/"><i class="fh fh-cube" aria-hidden="true"></i> Docker</a><span class="menu-cate-list-count">1</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Git/"><i class="fh fh-cube" aria-hidden="true"></i> Git</a><span class="menu-cate-list-count">3</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Linux/"><i class="fh fh-cube" aria-hidden="true"></i> Linux</a><span class="menu-cate-list-count">13</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Linux/CentOS/"><i class="fh fh-cube" aria-hidden="true"></i> CentOS</a><span class="menu-cate-list-count">9</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Tool/"><i class="fh fh-cube" aria-hidden="true"></i> Tool</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Tool/SVN/"><i class="fh fh-cube" aria-hidden="true"></i> SVN</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Windows/"><i class="fh fh-cube" aria-hidden="true"></i> Windows</a><span class="menu-cate-list-count">2</span></li></ul>
+                    </dd>
+                </dl>
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-tag" aria-hidden="true"></i> Tags
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        <ul class="menu-tag-list" itemprop="keywords"><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Net/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> .Net</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Net-Core/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> .Net Core</a><span class="menu-tag-list-count">4</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/ASP-Net/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> ASP.Net</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Android/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Android</a><span class="menu-tag-list-count">5</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Angular/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Angular</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Apache/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Apache</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Bash/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Bash</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Bubbling/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Bubbling</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/C/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> C#</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Config/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Config</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Develop/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Develop</a><span class="menu-tag-list-count">16</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Docker/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Docker</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/EntityFrameworkCore/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> EntityFrameworkCore</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/FTP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> FTP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Firewall/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Firewall</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/FontAwesome/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> FontAwesome</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/GCC/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> GCC</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Git/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Git</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/IKEv2/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> IKEv2</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/IOS/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> IOS</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Javascript/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Javascript</a><span class="menu-tag-list-count">5</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Kotlin/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Kotlin</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/LeonardoFibonacci/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> LeonardoFibonacci</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Memagent/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Memagent</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Memcached/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Memcached</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/MongoDB/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> MongoDB</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Mono/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Mono</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Monodevelop/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Monodevelop</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/MySql/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> MySql</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Nginx/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Nginx</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/NodeJs/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> NodeJs</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/OpenVPN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> OpenVPN</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Oracle/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Oracle</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PHP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PHP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PL-SQL/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PL/SQL</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PPTP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PPTP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Plug/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Plug</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Python/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Python</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/React-Native/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> React Native</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/SVN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> SVN</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Scrapy/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Scrapy</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Setting/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Setting</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Swift/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Swift</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Tool/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Tool</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/VPN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> VPN</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/WebPack/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> WebPack</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/WebPck/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> WebPck</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Windows-Service/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Windows Service</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/kernel/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> kernel</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/recursion/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> recursion</a><span class="menu-tag-list-count">1</span></li></ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--end menu-->
+
+    <div class="row hannah-body">
+        <div class="col-md-8 col-md-push-2 col-xs-12">
+            <!--begin breadcrumb-->
+            <div class="bread-crumb">
+    <ul class="bread-crumb-menu animated rubberBand">
+        <li><a href="/"><i class="fh fh-ravelry" aria-hidden="true"></i> Home</a></li>
+        
+        <li><a href="/categories/Develop/"><i class="fh fh-cube" aria-hidden="true"></i> Develop</a>
+        </li>
+        
+        <li><a href="/categories/Develop/Javascript/"><i class="fh fh-cube" aria-hidden="true"></i> Javascript</a>
+        </li>
+        
+        <li><a href="/categories/Develop/Javascript/WebPack/"><i class="fh fh-cube" aria-hidden="true"></i> WebPack</a>
+        </li>
+        
+        <li>
+            
+            <i class="fh fh-newspaper-o" aria-hidden="true"></i>
+            
+            Webpack 结构与说明
+        </li>
+        
+    </ul>
+    <div class="bread-crumb-search">
+        <div class="search">
+    <i class="fh fh-search icon-search"></i>
+    <input placeholder="Search ..." onkeyup="searchFunc(this,event,'/search.xml')"
+           class="input-search animated fadeInRight"/>
+    <div class="search-result animated fadeInRight">
+        <a class="animated tada col-lg-12 search-result-item result-link" href="/2020/05/19/Linux-VI/">Linux vi 操作</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/05/11/SpiderKeeper-Publish-Scrapy/">SpiderKeeper 部署 Scrapy</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/30/Docker-Add-Registry-Mirrors/">Docker 添加 Registry 镜像</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/26/Liunx-Bash/">Liunx Bash 命令</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/20/Oracle-Edit-Database-File-Path/">Oracle 修改数据库文件大小</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2019/01/02/Android-Add-Dependencies/">Android 添加 Dependencies 报错 Manifest merger failed</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/06/29/Android-Apk-Decompile/">Android APK 反编译</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/06/04/Android-Shortcut-Key/">Android Studio 常用快捷键</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/05/29/Android-Kotlin-Use-Tabs/">TabLayout+ViewPager+Fragment的使用</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/05/15/React-Native-Error/">React Native Error</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/04/27/IOS-Swift-UITable/">IOS Swift UITable 使用</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/03/26/Android-Open-Source-Project/">Android 开源项目</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/02/09/Asp-DotNet-MVC-Webpack/">ASP.NET MVC 使用webpack</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/01/25/CentOS-7-Git-For-Source/">CentOS Git 源码安装</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2017/11/01/React-Natice-Generating-APK/">React Natice Android 版 打包APK</a>
+    </div>
+</div>
+    </div>
+</div>
+            <!--end breadcrumb-->
+            <!--begin body-->
+            <article class="post animated rollIn">
+    <h1 class="post-title">Webpack 结构与说明</h1>
+    <div class="post-subtitle">
+        
+        <time datetime="2017-09-26T02:02:26.000Z" class="item">
+            <i class="fh fh-calendar" aria-hidden="true"></i>&nbsp;&nbsp;2017-09-26
+        </time>
+        
+        
+        <span class="item">
+      <i class="fh fh-cubes" aria-hidden="true"></i>&nbsp;
+            
+            <a class="label label-primary tags" href="/categories/Develop/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;Develop
+        </a>
+            
+            <a class="label label-primary tags" href="/categories/Develop/Javascript/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;Javascript
+        </a>
+            
+            <a class="label label-primary tags" href="/categories/Develop/Javascript/WebPack/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;WebPack
+        </a>
+            
+        </span>
+        
+        
+        <span class="item">
+        <i class="fh fh-tags" aria-hidden="true"></i>&nbsp;
+            
+            <a class="label label-info tags" href="/tags/Javascript/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;Javascript
+            </a>
+            
+            <a class="label label-info tags" href="/tags/WebPack/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;WebPack
+            </a>
+            
+        </span>
+        
+    </div>
+    
+    <blockquote>
+        <p><strong><em>简介</em></strong><br></p>
+        <p>_ webpack 是一个现代 JavaScript 应用程序的模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成少量的 bundle - 通常只有一个，由浏览器加载。 _</p>
+    </blockquote>
+    
+    
+<span id="more"></span>
+
+<h4 id="WebPack-的四个核心要素"><a href="#WebPack-的四个核心要素" class="headerlink" title="WebPack 的四个核心要素"></a>WebPack 的四个核心要素</h4><h5 id="入口-Entry"><a href="#入口-Entry" class="headerlink" title="入口(Entry)"></a>入口(<code>Entry</code>)</h5><p>webpack 创建应用程序所有依赖的关系图(dependency graph)。图的起点被称之为入口起点(entry point)。入口起点告诉 webpack 从哪里开始，并根据依赖关系图确定需要打包的内容。可以将应用程序的入口起点认为是根上下文(contextual root) 或 app 第一个启动文件。</p>
+<hr>
+<h5 id="输出-output"><a href="#输出-output" class="headerlink" title="输出(output)"></a>输出(<code>output</code>)</h5><p>将所有的资源(assets)归拢在一起后，还需要告诉 webpack 在哪里打包应用程序。webpack 的 output 属性描述了如何处理归拢在一起的代码(bundled code)。</p>
+<hr>
+<h5 id="loader"><a href="#loader" class="headerlink" title="loader"></a><code>loader</code></h5><p>webpack 的目标是，让 webpack 聚焦于项目中的所有资源(asset)，而浏览器不需要关注考虑这些（明确的说，这并不意味着所有资源(asset)都必须打包在一起）。webpack 把每个文件(.css, .html, .scss, .jpg, etc.) 都作为模块处理。然而 webpack 自身只理解 JavaScript。<br>webpack loader 在文件被添加到依赖图中时，其转换为模块。</p>
+<p><em><strong>在更高层面，在 webpack 的配置中 loader 有两个目标。</strong></em></p>
+<p>识别出(identify)应该被对应的 loader 进行转换(transform)的那些文件。(test 属性)<br>转换这些文件，从而使其能够被添加到依赖图中（并且最终添加到 bundle 中）(use 属性)</p>
+<hr>
+<h5 id="插件-plugins"><a href="#插件-plugins" class="headerlink" title="插件(plugins)"></a>插件(<code>plugins</code>)</h5><p>然而由于 loader 仅在每个文件的基础上执行转换，而 插件(plugins) 更常用于（但不限于）在打包模块的 “compilation” 和 “chunk” 生命周期执行操作和自定义功能（查看更多）。</p>
+<hr>
+<h4 id="WebPack-Option"><a href="#WebPack-Option" class="headerlink" title="WebPack Option"></a>WebPack Option</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  entry: <span class="comment"># string | object | array</span></span><br><span class="line">  // 这里应用程序开始执行</span><br><span class="line">  // webpack 开始打包</span><br><span class="line"></span><br><span class="line">  output: &#123;</span><br><span class="line">    // webpack 如何输出结果的相关选项</span><br><span class="line"></span><br><span class="line">    path: <span class="comment"># string</span></span><br><span class="line">    // 所有输出文件的目标路径</span><br><span class="line">    // 必须是绝对路径（使用 Node.js 的 path 模块）</span><br><span class="line"></span><br><span class="line">    filename: <span class="comment"># string</span></span><br><span class="line">    // 「入口分块(entry chunk)」的文件名模板（出口分块？）</span><br><span class="line"></span><br><span class="line">    publicPath: <span class="comment"># string</span></span><br><span class="line">    // 输出解析文件的目录，url 相对于 HTML 页面</span><br><span class="line"></span><br><span class="line">    library: <span class="comment"># string,</span></span><br><span class="line">    // 导出库(exported library)的名称</span><br><span class="line"></span><br><span class="line">    libraryTarget: <span class="comment"># 通用模块定义  </span></span><br><span class="line">    /* 可选值： <span class="string">&quot;umd&quot;</span>   // 这是一种可以将你的 library 能够在所有的模块定义下都可运行的方式（并且导出的完全不是模块）。</span><br><span class="line">                        // 它将在 CommonJS, AMD 环境下运行，或将模块导出到 global 下的变量</span><br><span class="line">                <span class="string">&quot;var&quot;</span>   // （默认值）当 library 加载完成，入口起点的返回值将分配给一个变量</span><br><span class="line">                <span class="string">&quot;window&quot;</span> // 当 library 加载完成，入口起点的返回值将分配给 window 对象。</span><br><span class="line">                <span class="string">&quot;global&quot;</span> // 当 library 加载完成，入口起点的返回值将分配给 global 对象。</span><br><span class="line">                <span class="string">&quot;commonjs&quot;</span> //  当 library 加载完成，入口起点的返回值将分配给 exports 对象。</span><br><span class="line">                <span class="string">&quot;commonjs2&quot;</span>  // 当 library 加载完成，入口起点的返回值将分配给 exports 对象。</span><br><span class="line">                <span class="string">&quot;this&quot;</span>    // 当 library 加载完成，入口起点的返回值将分配给 this，this 的含义取决于你</span><br><span class="line">                <span class="string">&quot;amd&quot;</span>     // webpack 将你的 library 转为 AMD 模块</span><br><span class="line">                <span class="string">&quot;assign&quot;</span>   // 这里 webpack 会轻率地产生隐含的全局变量。</span><br><span class="line">                <span class="string">&quot;jsonp&quot;</span>    //  这将把入口起点的返回值，包裹到一个 jsonp 包装容器中</span><br><span class="line">    // 导出库(exported library)的类型</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    // 关于模块配置</span><br><span class="line">    rules: [</span><br><span class="line">      // 模块规则（配置 loader、解析器等选项）</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.jsx?$/,</span><br><span class="line">        include: [</span><br><span class="line">          path.resolve(__dirname, <span class="string">&quot;app&quot;</span>)</span><br><span class="line">        ],</span><br><span class="line">        exclude: [</span><br><span class="line">          path.resolve(__dirname, <span class="string">&quot;app/demo-files&quot;</span>)</span><br><span class="line">        ],</span><br><span class="line">        // 这里是匹配条件，每个选项都接收一个正则表达式或字符串</span><br><span class="line">        // <span class="built_in">test</span> 和 include 具有相同的作用，都是必须匹配选项</span><br><span class="line">        // exclude 是必不匹配选项（优先于 <span class="built_in">test</span> 和 include）</span><br><span class="line">        // 最佳实践：</span><br><span class="line">        // - 只在 <span class="built_in">test</span> 和 文件名匹配 中使用正则表达式</span><br><span class="line">        // - 在 include 和 exclude 中使用绝对路径数组</span><br><span class="line">        // - 尽量避免 exclude，更倾向于使用 include</span><br><span class="line"></span><br><span class="line">        issuer: &#123; <span class="built_in">test</span>, include, exclude &#125;,</span><br><span class="line">        // issuer 条件（导入源）</span><br><span class="line"></span><br><span class="line">        enforce: <span class="string">&quot;pre&quot;</span>,</span><br><span class="line">        enforce: <span class="string">&quot;post&quot;</span>,</span><br><span class="line">        // 标识应用这些规则，即使规则覆盖（高级选项）</span><br><span class="line"></span><br><span class="line">        loader: <span class="string">&quot;babel-loader&quot;</span>,</span><br><span class="line">        // 应该应用的 loader，它相对上下文解析</span><br><span class="line">        // 为了更清晰，`-loader` 后缀在 webpack 2 中不再是可选的</span><br><span class="line">        // 查看 webpack 1 升级指南。</span><br><span class="line"></span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [<span class="string">&quot;es2015&quot;</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        // loader 的可选项</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">test</span>: /\.html$/,</span><br><span class="line">        <span class="built_in">test</span>: <span class="string">&quot;\.html$&quot;</span></span><br><span class="line"></span><br><span class="line">        use: [</span><br><span class="line">          // 应用多个 loader 和选项</span><br><span class="line">          <span class="string">&quot;htmllint-loader&quot;</span>,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">&quot;html-loader&quot;</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              /* ... */</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      &#123; oneOf: [ /* rules */ ] &#125;,</span><br><span class="line">      // 只使用这些嵌套规则之一</span><br><span class="line"></span><br><span class="line">      &#123; rules: [ /* rules */ ] &#125;,</span><br><span class="line">      // 使用所有这些嵌套规则（合并可用条件）</span><br><span class="line"></span><br><span class="line">      &#123; resource: &#123; and: [ /* 条件 */ ] &#125; &#125;,</span><br><span class="line">      // 仅当所有条件都匹配时才匹配</span><br><span class="line"></span><br><span class="line">      &#123; resource: &#123; or: [ /* 条件 */ ] &#125; &#125;,</span><br><span class="line">      &#123; resource: [ /* 条件 */ ] &#125;,</span><br><span class="line">      // 任意条件匹配时匹配（默认为数组）</span><br><span class="line"></span><br><span class="line">      &#123; resource: &#123; not: /* 条件 */ &#125; &#125;</span><br><span class="line">      // 条件不匹配时匹配</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  resolve: &#123;</span><br><span class="line">    // 解析模块请求的选项</span><br><span class="line">    // （不适用于对 loader 解析）</span><br><span class="line"></span><br><span class="line">    modules: [</span><br><span class="line">      <span class="string">&quot;node_modules&quot;</span>,</span><br><span class="line">      path.resolve(__dirname, <span class="string">&quot;app&quot;</span>)</span><br><span class="line">    ],</span><br><span class="line">    // 用于查找模块的目录</span><br><span class="line"></span><br><span class="line">    extensions: [<span class="string">&quot;.js&quot;</span>, <span class="string">&quot;.json&quot;</span>, <span class="string">&quot;.jsx&quot;</span>, <span class="string">&quot;.css&quot;</span>],</span><br><span class="line">    // 使用的扩展名</span><br><span class="line"></span><br><span class="line">    <span class="built_in">alias</span>: &#123;</span><br><span class="line">      // 模块别名列表</span><br><span class="line"></span><br><span class="line">      <span class="string">&quot;module&quot;</span>: <span class="string">&quot;new-module&quot;</span>,</span><br><span class="line">      // 起别名：<span class="string">&quot;module&quot;</span> -&gt; <span class="string">&quot;new-module&quot;</span> 和 <span class="string">&quot;module/path/file&quot;</span> -&gt; <span class="string">&quot;new-module/path/file&quot;</span></span><br><span class="line"></span><br><span class="line">      <span class="string">&quot;only-module$&quot;</span>: <span class="string">&quot;new-module&quot;</span>,</span><br><span class="line">      // 起别名 <span class="string">&quot;only-module&quot;</span> -&gt; <span class="string">&quot;new-module&quot;</span>，但不匹配 <span class="string">&quot;only-module/path/file&quot;</span> -&gt; <span class="string">&quot;new-module/path/file&quot;</span></span><br><span class="line"></span><br><span class="line">      <span class="string">&quot;module&quot;</span>: path.resolve(__dirname, <span class="string">&quot;app/third/module.js&quot;</span>),</span><br><span class="line">      // 起别名 <span class="string">&quot;module&quot;</span> -&gt; <span class="string">&quot;./app/third/module.js&quot;</span> 和 <span class="string">&quot;module/file&quot;</span> 会导致错误</span><br><span class="line">      // 模块别名相对于当前上下文导入</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  performance: &#123;</span><br><span class="line">    hints: <span class="string">&quot;warning&quot;</span>, // 枚举</span><br><span class="line">    maxAssetSize: 200000, // 整数类型（以字节为单位）</span><br><span class="line">    maxEntrypointSize: 400000, // 整数类型（以字节为单位）</span><br><span class="line">    assetFilter: <span class="keyword">function</span>(assetFilename) &#123;</span><br><span class="line">      // 提供资源文件名的断言函数</span><br><span class="line">      <span class="built_in">return</span> assetFilename.endsWith(<span class="string">&#x27;.css&#x27;</span>) || assetFilename.endsWith(<span class="string">&#x27;.js&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  devtool: <span class="string">&quot;source-map&quot;</span>, // enum</span><br><span class="line">  // 通过在浏览器调试工具(browser devtools)中添加元信息(meta info)增强调试</span><br><span class="line">  // 牺牲了构建速度的 `source-map<span class="string">&#x27; 是最详细的。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  context: __dirname, // string（绝对路径！）</span></span><br><span class="line"><span class="string">  // webpack 的主目录</span></span><br><span class="line"><span class="string">  // entry 和 module.rules.loader 选项</span></span><br><span class="line"><span class="string">  // 相对于此目录解析</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  target: &quot;web&quot;, // 枚举</span></span><br><span class="line"><span class="string">  // 包(bundle)应该运行的环境</span></span><br><span class="line"><span class="string">  // 更改 块加载行为(chunk loading behavior) 和 可用模块(available module)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  externals: [&quot;react&quot;, /^@angular\//],</span></span><br><span class="line"><span class="string">  // 不要遵循/打包这些模块，而是在运行时从环境中请求他们</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  stats: &quot;errors-only&quot;,</span></span><br><span class="line"><span class="string">  // 精确控制要显示的 bundle 信息</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  devServer: &#123;</span></span><br><span class="line"><span class="string">    proxy: &#123; // proxy URLs to backend development server</span></span><br><span class="line"><span class="string">      &#x27;</span>/api<span class="string">&#x27;: &#x27;</span>http://localhost:3000<span class="string">&#x27;</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    contentBase: path.join(__dirname, &#x27;</span>public<span class="string">&#x27;), // boolean | string | array, static file location</span></span><br><span class="line"><span class="string">    compress: true, // enable gzip compression</span></span><br><span class="line"><span class="string">    historyApiFallback: true, // true for index.html upon 404, object for multiple paths</span></span><br><span class="line"><span class="string">    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin</span></span><br><span class="line"><span class="string">    https: false, // true for self-signed, object for cert authority</span></span><br><span class="line"><span class="string">    noInfo: true, // only errors &amp; warns on hot reload</span></span><br><span class="line"><span class="string">    // ...</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  plugins: [</span></span><br><span class="line"><span class="string">    // ...</span></span><br><span class="line"><span class="string">  ],</span></span><br><span class="line"><span class="string">  // 附加插件列表</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  resolveLoader: &#123; /* 等同于 resolve */ &#125;</span></span><br><span class="line"><span class="string">  // 独立解析选项的 loader</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  parallelism: 1, // number</span></span><br><span class="line"><span class="string">  // 限制并行处理模块的数量</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  profile: true, // boolean</span></span><br><span class="line"><span class="string">  // 捕获时机信息</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  bail: true, //boolean</span></span><br><span class="line"><span class="string">  // 在第一个错误出错时抛出，而不是无视错误。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  cache: false, // boolean</span></span><br><span class="line"><span class="string">  // 禁用/启用缓存</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  watch: true, // boolean</span></span><br><span class="line"><span class="string">  // 启用观察</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  watchOptions: &#123;</span></span><br><span class="line"><span class="string">    aggregateTimeout: 1000, // in ms</span></span><br><span class="line"><span class="string">    // 将多个更改聚合到单个重构建(rebuild)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    poll: true,</span></span><br><span class="line"><span class="string">    poll: 500, // 间隔单位 ms</span></span><br><span class="line"><span class="string">    // 启用轮询观察模式</span></span><br><span class="line"><span class="string">    // 必须用在不通知更改的文件系统中</span></span><br><span class="line"><span class="string">    // 即 nfs shares（译者注：Network FileSystem，最大的功能就是可以透過網路，讓不同的機器、不同的作業系統、可以彼此分享個別的檔案 ( share file )）</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  node: &#123;</span></span><br><span class="line"><span class="string">    // Polyfills and mocks to run Node.js-</span></span><br><span class="line"><span class="string">    // environment code in non-Node environments.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    console: false, // boolean | &quot;mock&quot;</span></span><br><span class="line"><span class="string">    global: true, // boolean | &quot;mock&quot;</span></span><br><span class="line"><span class="string">    process: true, // boolean</span></span><br><span class="line"><span class="string">    __filename: &quot;mock&quot;, // boolean | &quot;mock&quot;</span></span><br><span class="line"><span class="string">    __dirname: &quot;mock&quot;, // boolean | &quot;mock&quot;</span></span><br><span class="line"><span class="string">    Buffer: true, // boolean | &quot;mock&quot;</span></span><br><span class="line"><span class="string">    setImmediate: true // boolean | &quot;mock&quot; | &quot;empty&quot;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  recordsPath: path.resolve(__dirname, &quot;build/records.json&quot;),</span></span><br><span class="line"><span class="string">  recordsInputPath: path.resolve(__dirname, &quot;build/records.json&quot;),</span></span><br><span class="line"><span class="string">  recordsOutputPath: path.resolve(__dirname, &quot;build/records.json&quot;),</span></span><br><span class="line"><span class="string">  // TODO</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+</article>
+<ol class="animated rollIn hannah-toc"><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#WebPack-%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0"><span class="animated rollIn hannah-toc-text">WebPack 的四个核心要素</span></a><ol class="animated rollIn hannah-toc-child"><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-5"><a class="animated rollIn hannah-toc-link" href="#%E5%85%A5%E5%8F%A3-Entry"><span class="animated rollIn hannah-toc-text">入口(Entry)</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-5"><a class="animated rollIn hannah-toc-link" href="#%E8%BE%93%E5%87%BA-output"><span class="animated rollIn hannah-toc-text">输出(output)</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-5"><a class="animated rollIn hannah-toc-link" href="#loader"><span class="animated rollIn hannah-toc-text">loader</span></a></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-5"><a class="animated rollIn hannah-toc-link" href="#%E6%8F%92%E4%BB%B6-plugins"><span class="animated rollIn hannah-toc-text">插件(plugins)</span></a></li></ol></li><li class="animated rollIn hannah-toc-item animated rollIn hannah-toc-level-4"><a class="animated rollIn hannah-toc-link" href="#WebPack-Option"><span class="animated rollIn hannah-toc-text">WebPack Option</span></a></li></ol>
+<div class="animated bounceInDown paginations">
+    <div class="col-md-8 col-md-push-2 col-xs-12">
+        <nav>
+            
+            <a href="/2017/09/26/DotNet-Core-SpaTemplates/" class="prev col-md-2 col-xs-4 text-left">&larr; Prev</a>
+            
+            <span
+                class="page-content col-md-8  col-xs-4 text-center">
+                
+            </span>
+            
+            <a href="/2017/09/21/DotNet-Code-Bash/" class="next col-md-2 col-xs-4 text-right">Next &rarr;</a>
+            
+        </nav>
+        <div>
+            <div class="col-md-6 col-xs-6 text-left">
+                
+                .Net Core 安装项目模板
+                
+            </div>
+            <div class="col-md-6 col-xs-6 text-right">
+                
+                命令行中创建使用.Net Core
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!--end body-->
+            <!--begin comments-->
+            
+<div class="comments">
+    
+
+    
+    
+<div id="gitalk-container">
+</div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script>
+    var loadJs = function (d, a) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document
+            .documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("src", d);
+        if (typeof a === "function") {
+            if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                    var e = b.readyState;
+                    if (e === "loaded" || e === "complete") {
+                        b.onreadystatechange = null;
+                        a()
+                    }
+                }
+            } else {
+                b.onload = a
+            }
+        }
+        c.appendChild(b)
+    };
+    loadJs("https://unpkg.com/gitalk/dist/gitalk.min.js", function () {
+        var gitalk = new Gitalk({
+            clientID: 'e82b50d554e32a851ae7',
+            clientSecret: '95923aeaddb44e6de22d088703c6bbde978f505c',
+            repo: 'objectyan.github.io',
+            owner: 'objectyan',
+            admin: ['objectyan'],
+            id: decodeURIComponent(location.pathname),
+            distractionFreeMode: false
+        })
+
+        gitalk.render('gitalk-container')
+    });
+</script>
+
+</div>
+
+
+            <!--end comments-->
+        </div>
+    </div>
+
+    <!--begin footer-->
+    <footer id="footer" class="footer animated fadeInUp hide">
+    <p><i class="copy">&copy;</i> 2024 1111 <a href="http://objectyan.github.io">OY</a> All Right Reserved.</p>
+    <p>Powered by <a href="http://hexo.io" rel="external nofollow">Hexo</a>. Theme by <a href="https://github.com/objectyan/hexo-theme-hannah" rel="external nofollow">hannah</a></p>
+</footer>
+    <!--end footer-->
+
+    
+    <!-- scripts list from theme config.yml -->
+    
+    <script src="/js/hannah.js"></script>
+    
+    
+    <!--begin analytics-->
+    
+<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?f18fb69801f0f64138e5b6cae4b1c6cc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+    <!--end analytics-->
+</body>
+<!--end body-->
+<!--begin canvas-nest-->
+<script>
+    var nesturl = "https://unpkg.com/canvas-nest.js/dist/canvas-nest.js";
+    var c = document.getElementsByTagName("body")[0] || document.body || document.documentElement;
+    var b = document.createElement("script");
+    b.setAttribute("type", "text/javascript");
+    b.setAttribute("src", nesturl);
+    b.setAttribute("color",
+        `${ Math.floor(Math.random()*256)},${ Math.floor(Math.random()*256)},${ Math.floor(Math.random()*256)}`);
+    b.setAttribute("opacity", Math.random());
+    b.setAttribute("count", parseInt((Math.random() * 500) || 99));
+    c.appendChild(b)
+</script>
+<!--end canvas-nest-->
+
+</html>

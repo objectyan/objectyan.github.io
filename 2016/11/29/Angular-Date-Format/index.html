@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!--begin head-->
+
+<head>
+    <meta charset="utf-8">
+<!--begin title-->
+
+<title>
+    
+    AngularJs 时间格式化 |
+    
+    OY&#39;s Blog</title>
+<!--end title-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--begin mete-->
+
+<meta name="description" content="OY"/>
+
+<meta name="author" content="OY"/>
+
+<!--end mete-->
+<!--begin keywords-->
+<meta name="keywords" content=".Net,.Net Core,ASP.Net,Android,Angular,Apache,Bash,Bubbling,C#,Config,Develop,Docker,EntityFrameworkCore,FTP,Firewall,FontAwesome,GCC,Git,IKEv2,IOS,Javascript,Kotlin,LeonardoFibonacci,Memagent,Memcached,MongoDB,Mono,Monodevelop,MySql,Nginx,NodeJs,OpenVPN,Oracle,PHP,PL/SQL,PPTP,Plug,Python,React Native,SVN,Scrapy,Setting,Swift,Tool,VPN,WebPack,WebPck,Windows Service,kernel,recursion"/>
+<!--end keywords-->
+<!--begin rss-->
+
+<link rel="alternate" href="/atom.xml" title="OY&#39;s Blog" type="application/atom+xml">
+
+<!--end rss-->
+<!--begin favicon-->
+
+<link rel="icon" href="/favicon.ico">
+
+<!--end favicon-->
+<!--begin style-->
+
+<!-- stylesheets list from config.yml -->
+
+<link rel="stylesheet" href="/css/hannah.css">
+
+
+<!--end style-->
+<meta name="generator" content="Hexo 7.3.0"></head>
+<!--end head-->
+<!--begin body-->
+
+<body class="container-fluid">
+
+    <!--begin menu-->
+    <div class="hannah-menu">
+    <i class="fh fh-ravelry fa-2x btn fixed-menu animated bounce" id="btn_menu" aria-hidden="true"></i>
+    <div class="menu-outer container-fluid hide animated" id="div_menu">
+        <div class="row" style="margin-bottom: 5px;">
+            
+            <div class="col-md-offset-2 col-md-3 col-xs-4 text-center left-social">
+                
+                <a target="_blank" href="https://github.com/objectyan" title="GitHub"><i class="fh fh-github"></i></a>
+                
+                <style>
+                    .left-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    .left-social * {
+                        color: #f1ce8e;
+                    }
+
+                    @media (max-width: 767px) {
+                        .left-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+                </style>
+            </div>
+            <!--begin handImg-->
+            <div class="col-md-2 col-xs-4 text-center">
+                
+                <img src="/img/logo.jpg" alt="Head Image" class="img-circle">
+                
+            </div>
+            <!--end handImg-->
+            <div class="col-md-3 col-xs-4 text-center right-social">
+                
+                <style>
+                    .right-social {
+                        height: 132px;
+                        line-height: 132px;
+                        font-size: 66px;
+                    }
+
+                    @media (max-width: 767px) {
+                        .right-social {
+                            line-height: 132px;
+                            font-size: 33px;
+                        }
+                    }
+
+                    .right-social * {
+                        color: #f1ce8e;
+                    }
+                </style>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-push-2 col-xs-12 ">
+                <dl class="menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-bars" aria-hidden="true"></i> Menu
+                    </dt>
+                    <dd class="menu-content-content">
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/" class="btn btn-block">
+                                
+                                <i class="fh fh-ravelry"></i>
+                                Home
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/categories" class="btn btn-block">
+                                
+                                <i class="fh fh-cubes"></i>
+                                Category
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/tags" class="btn btn-block">
+                                
+                                <i class="fh fh-tags"></i>
+                                Tag
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/archives" class="btn btn-block">
+                                
+                                <i class="fh fh-archive"></i>
+                                Archives
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/about" class="btn btn-block">
+                                
+                                <i class="fh fh-about"></i>
+                                About
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/doc" class="btn btn-block">
+                                
+                                <i class="fh fh-document"></i>
+                                Doc
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/plug" class="btn btn-block">
+                                
+                                <i class="fh fh-plug"></i>
+                                Plug
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/sitemap" class="btn btn-block">
+                                
+                                <i class="fh fh-sitemap"></i>
+                                SiteMap
+                            </a>
+                        </div>
+                        
+                        <div class="col-md-4 col-xs-6 col-sm-4 text-center animated tada">
+                            <a href="/atom.xml" class="btn btn-block">
+                                <i class="fh fh-rss" aria-hidden="true"></i> RSS
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu-content col-md-8 col-md-offset-2 col-xs-12 ">
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-cubes" aria-hidden="true"></i> Category
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        <ul class="menu-cate-list"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Algotithm/"><i class="fh fh-cube" aria-hidden="true"></i> Algotithm</a><span class="menu-cate-list-count">2</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Database/"><i class="fh fh-cube" aria-hidden="true"></i> Database</a><span class="menu-cate-list-count">2</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/"><i class="fh fh-cube" aria-hidden="true"></i> Develop</a><span class="menu-cate-list-count">22</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net/"><i class="fh fh-cube" aria-hidden="true"></i> .Net</a><span class="menu-cate-list-count">2</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net/C/"><i class="fh fh-cube" aria-hidden="true"></i> C#</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Net-Core/"><i class="fh fh-cube" aria-hidden="true"></i> .Net Core</a><span class="menu-cate-list-count">4</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/ASP-Net/"><i class="fh fh-cube" aria-hidden="true"></i> ASP.Net</a><span class="menu-cate-list-count">1</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Android/"><i class="fh fh-cube" aria-hidden="true"></i> Android</a><span class="menu-cate-list-count">5</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/IOS/"><i class="fh fh-cube" aria-hidden="true"></i> IOS</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/IOS/Swift/"><i class="fh fh-cube" aria-hidden="true"></i> Swift</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/"><i class="fh fh-cube" aria-hidden="true"></i> Javascript</a><span class="menu-cate-list-count">5</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/Angular/"><i class="fh fh-cube" aria-hidden="true"></i> Angular</a><span class="menu-cate-list-count">3</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Javascript/WebPack/"><i class="fh fh-cube" aria-hidden="true"></i> WebPack</a><span class="menu-cate-list-count">2</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Python/"><i class="fh fh-cube" aria-hidden="true"></i> Python</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/Python/Scrapy/"><i class="fh fh-cube" aria-hidden="true"></i> Scrapy</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Develop/React-Native/"><i class="fh fh-cube" aria-hidden="true"></i> React Native</a><span class="menu-cate-list-count">3</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Docker/"><i class="fh fh-cube" aria-hidden="true"></i> Docker</a><span class="menu-cate-list-count">1</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Git/"><i class="fh fh-cube" aria-hidden="true"></i> Git</a><span class="menu-cate-list-count">3</span></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Linux/"><i class="fh fh-cube" aria-hidden="true"></i> Linux</a><span class="menu-cate-list-count">13</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Linux/CentOS/"><i class="fh fh-cube" aria-hidden="true"></i> CentOS</a><span class="menu-cate-list-count">9</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Tool/"><i class="fh fh-cube" aria-hidden="true"></i> Tool</a><span class="menu-cate-list-count">1</span><ul class="menu-cate-list-child"><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Tool/SVN/"><i class="fh fh-cube" aria-hidden="true"></i> SVN</a><span class="menu-cate-list-count">1</span></li></ul></li><li class="menu-cate-list-item"><a class="menu-cate-list-link" href="/categories/Windows/"><i class="fh fh-cube" aria-hidden="true"></i> Windows</a><span class="menu-cate-list-count">2</span></li></ul>
+                    </dd>
+                </dl>
+                <dl class="col-md-6 col-xs-6 menu-content-item">
+                    <dt class="menu-content-title">
+                        <i class="fh fh-tag" aria-hidden="true"></i> Tags
+                    </dt>
+                    <dd class="menu-content-content animated zoomIn">
+                        <ul class="menu-tag-list" itemprop="keywords"><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Net/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> .Net</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Net-Core/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> .Net Core</a><span class="menu-tag-list-count">4</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/ASP-Net/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> ASP.Net</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Android/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Android</a><span class="menu-tag-list-count">5</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Angular/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Angular</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Apache/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Apache</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Bash/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Bash</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Bubbling/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Bubbling</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/C/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> C#</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Config/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Config</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Develop/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Develop</a><span class="menu-tag-list-count">16</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Docker/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Docker</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/EntityFrameworkCore/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> EntityFrameworkCore</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/FTP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> FTP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Firewall/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Firewall</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/FontAwesome/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> FontAwesome</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/GCC/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> GCC</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Git/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Git</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/IKEv2/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> IKEv2</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/IOS/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> IOS</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Javascript/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Javascript</a><span class="menu-tag-list-count">5</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Kotlin/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Kotlin</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/LeonardoFibonacci/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> LeonardoFibonacci</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Memagent/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Memagent</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Memcached/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Memcached</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/MongoDB/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> MongoDB</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Mono/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Mono</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Monodevelop/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Monodevelop</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/MySql/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> MySql</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Nginx/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Nginx</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/NodeJs/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> NodeJs</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/OpenVPN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> OpenVPN</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Oracle/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Oracle</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PHP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PHP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PL-SQL/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PL/SQL</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/PPTP/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> PPTP</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Plug/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Plug</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Python/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Python</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/React-Native/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> React Native</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/SVN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> SVN</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Scrapy/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Scrapy</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Setting/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Setting</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Swift/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Swift</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Tool/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Tool</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/VPN/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> VPN</a><span class="menu-tag-list-count">3</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/WebPack/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> WebPack</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/WebPck/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> WebPck</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/Windows-Service/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> Windows Service</a><span class="menu-tag-list-count">2</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/kernel/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> kernel</a><span class="menu-tag-list-count">1</span></li><li class="menu-tag-list-item"><a class="menu-tag-list-link" href="/tags/recursion/" rel="tag"><i class="fh fh-tag" aria-hidden="true"></i> recursion</a><span class="menu-tag-list-count">1</span></li></ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--end menu-->
+
+    <div class="row hannah-body">
+        <div class="col-md-8 col-md-push-2 col-xs-12">
+            <!--begin breadcrumb-->
+            <div class="bread-crumb">
+    <ul class="bread-crumb-menu animated rubberBand">
+        <li><a href="/"><i class="fh fh-ravelry" aria-hidden="true"></i> Home</a></li>
+        
+        <li><a href="/categories/Develop/"><i class="fh fh-cube" aria-hidden="true"></i> Develop</a>
+        </li>
+        
+        <li><a href="/categories/Develop/Javascript/"><i class="fh fh-cube" aria-hidden="true"></i> Javascript</a>
+        </li>
+        
+        <li><a href="/categories/Develop/Javascript/Angular/"><i class="fh fh-cube" aria-hidden="true"></i> Angular</a>
+        </li>
+        
+        <li>
+            
+            <i class="fh fh-newspaper-o" aria-hidden="true"></i>
+            
+            AngularJs 时间格式化
+        </li>
+        
+    </ul>
+    <div class="bread-crumb-search">
+        <div class="search">
+    <i class="fh fh-search icon-search"></i>
+    <input placeholder="Search ..." onkeyup="searchFunc(this,event,'/search.xml')"
+           class="input-search animated fadeInRight"/>
+    <div class="search-result animated fadeInRight">
+        <a class="animated tada col-lg-12 search-result-item result-link" href="/2020/05/19/Linux-VI/">Linux vi 操作</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/05/11/SpiderKeeper-Publish-Scrapy/">SpiderKeeper 部署 Scrapy</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/30/Docker-Add-Registry-Mirrors/">Docker 添加 Registry 镜像</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/26/Liunx-Bash/">Liunx Bash 命令</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2020/04/20/Oracle-Edit-Database-File-Path/">Oracle 修改数据库文件大小</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2019/01/02/Android-Add-Dependencies/">Android 添加 Dependencies 报错 Manifest merger failed</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/06/29/Android-Apk-Decompile/">Android APK 反编译</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/06/04/Android-Shortcut-Key/">Android Studio 常用快捷键</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/05/29/Android-Kotlin-Use-Tabs/">TabLayout+ViewPager+Fragment的使用</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/05/15/React-Native-Error/">React Native Error</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/04/27/IOS-Swift-UITable/">IOS Swift UITable 使用</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/03/26/Android-Open-Source-Project/">Android 开源项目</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/02/09/Asp-DotNet-MVC-Webpack/">ASP.NET MVC 使用webpack</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2018/01/25/CentOS-7-Git-For-Source/">CentOS Git 源码安装</a><a class="animated tada col-lg-12 search-result-item result-link" href="/2017/11/01/React-Natice-Generating-APK/">React Natice Android 版 打包APK</a>
+    </div>
+</div>
+    </div>
+</div>
+            <!--end breadcrumb-->
+            <!--begin body-->
+            <article class="post animated rollIn">
+    <h1 class="post-title">AngularJs 时间格式化</h1>
+    <div class="post-subtitle">
+        
+        <time datetime="2016-11-29T06:45:49.000Z" class="item">
+            <i class="fh fh-calendar" aria-hidden="true"></i>&nbsp;&nbsp;2016-11-29
+        </time>
+        
+        
+        <span class="item">
+      <i class="fh fh-cubes" aria-hidden="true"></i>&nbsp;
+            
+            <a class="label label-primary tags" href="/categories/Develop/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;Develop
+        </a>
+            
+            <a class="label label-primary tags" href="/categories/Develop/Javascript/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;Javascript
+        </a>
+            
+            <a class="label label-primary tags" href="/categories/Develop/Javascript/Angular/">
+           <i class="fh fh-cube" aria-hidden="true"></i>&nbsp;Angular
+        </a>
+            
+        </span>
+        
+        
+        <span class="item">
+        <i class="fh fh-tags" aria-hidden="true"></i>&nbsp;
+            
+            <a class="label label-info tags" href="/tags/Angular/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;Angular
+            </a>
+            
+            <a class="label label-info tags" href="/tags/Javascript/">
+            <i class="fh fh-tag" aria-hidden="true"></i>&nbsp;Javascript
+            </a>
+            
+        </span>
+        
+    </div>
+    
+    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">本地化日期格式化：</span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;medium&#x27;</span> &#125;&#125;)<span class="title class_">Nov</span> <span class="number">19</span>, <span class="number">2015</span> <span class="number">3</span>:<span class="number">57</span>:<span class="number">48</span> <span class="title function_">PM</span></span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;short&#x27;</span> &#125;&#125;)<span class="number">11</span>/<span class="number">19</span>/<span class="number">15</span> <span class="number">3</span>:<span class="number">57</span> <span class="title function_">PM</span></span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;fullDate&#x27;</span> &#125;&#125;)<span class="title class_">Thursday</span>, <span class="title class_">November</span> <span class="number">19</span>, <span class="number">2015</span></span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;longDate&#x27;</span> &#125;&#125;)<span class="title class_">November</span> <span class="number">19</span>, <span class="number">2015</span></span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;mediumDate&#x27;</span> &#125;&#125;)<span class="title class_">Nov</span> <span class="number">19</span>, <span class="number">2015</span></span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;shortDate&#x27;</span> &#125;&#125;)<span class="number">11</span>/<span class="number">19</span>/<span class="number">15</span></span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;mediumTime&#x27;</span> &#125;&#125;)<span class="number">3</span>:<span class="number">57</span>:<span class="number">48</span> <span class="title function_">PM</span></span><br><span class="line">(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;shortTime&#x27;</span> &#125;&#125;)<span class="number">3</span>:<span class="number">57</span> <span class="variable constant_">PM</span></span><br><span class="line">年份格式化：</span><br><span class="line">四位年份：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;yyyy&#x27;</span> &#125;&#125;)<span class="number">2015</span></span><br><span class="line">两位年份：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;yy&#x27;</span> &#125;&#125;)<span class="number">15</span></span><br><span class="line">一位年份：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;y&#x27;</span> &#125;&#125;)<span class="number">2015</span></span><br><span class="line">月份格式化：</span><br><span class="line">英文月份：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;MMMM&#x27;</span> &#125;&#125;)<span class="title class_">November</span></span><br><span class="line">英文月份简写：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;MMM&#x27;</span> &#125;&#125;)<span class="title class_">Nov</span></span><br><span class="line">两位数字月份：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;MM&#x27;</span> &#125;&#125;)<span class="number">11</span></span><br><span class="line">一年中的第几个月份：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;M&#x27;</span> &#125;&#125;)<span class="number">11</span></span><br><span class="line">日期格式化：</span><br><span class="line">数字日期：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;dd&#x27;</span> &#125;&#125;)<span class="number">19</span></span><br><span class="line">一个月中的第几天：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;d&#x27;</span> &#125;&#125;)<span class="number">19</span></span><br><span class="line">英文星期：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;EEEE&#x27;</span> &#125;&#125;)<span class="title class_">Thursday</span></span><br><span class="line">英文星期简写：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;EEE&#x27;</span> &#125;&#125;)<span class="title class_">Thu</span></span><br><span class="line">小时格式化：</span><br><span class="line"><span class="number">24</span>小时制数字小时：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;HH&#x27;</span> &#125;&#125;)<span class="number">15</span></span><br><span class="line">一天中的第几个小时：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;H&#x27;</span> &#125;&#125;)<span class="number">15</span></span><br><span class="line"><span class="number">12</span>小时制数字小时：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;hh&#x27;</span> &#125;&#125;)<span class="number">03</span></span><br><span class="line">上午或下午的第几个小时：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;h&#x27;</span> &#125;&#125;)<span class="number">3</span></span><br><span class="line">分钟格式化：</span><br><span class="line">数字分钟数：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;mm&#x27;</span> &#125;&#125;)<span class="number">57</span></span><br><span class="line">一个小时中的第几分钟：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;m&#x27;</span> &#125;&#125;)<span class="number">57</span></span><br><span class="line">秒数格式化：</span><br><span class="line">数字秒数：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;ss&#x27;</span> &#125;&#125;)<span class="number">48</span></span><br><span class="line">一分钟中内的第几秒：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;s&#x27;</span> &#125;&#125;)<span class="number">48</span></span><br><span class="line">毫秒数格式化：</span><br><span class="line">毫秒数：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;sss&#x27;</span> &#125;&#125;)<span class="number">541</span></span><br><span class="line">字符格式化：</span><br><span class="line">上下午标识：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;a&#x27;</span> &#125;&#125;)<span class="variable constant_">PM</span></span><br><span class="line">四位时区标识：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;Z&#x27;</span> &#125;&#125;)+<span class="number">0800</span></span><br><span class="line">自定义日期格式化：</span><br><span class="line">年月日：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;yyyy-MM-dd&#x27;</span> &#125;&#125;)<span class="number">2015</span>-<span class="number">11</span>-<span class="number">19</span></span><br><span class="line">时分秒：(&#123;&#123; today | <span class="attr">date</span>:<span class="string">&#x27;HH:mm:ss.sss&#x27;</span> &#125;&#125;)<span class="number">15</span>:<span class="number">57</span>:<span class="number">48.541</span></span><br></pre></td></tr></table></figure>
+</article>
+
+<div class="animated bounceInDown paginations">
+    <div class="col-md-8 col-md-push-2 col-xs-12">
+        <nav>
+            
+            <a href="/2017/03/21/Angular-Plug/" class="prev col-md-2 col-xs-4 text-left">&larr; Prev</a>
+            
+            <span
+                class="page-content col-md-8  col-xs-4 text-center">
+                
+            </span>
+            
+            <a href="/2016/11/29/Angular-Http-Interceptor/" class="next col-md-2 col-xs-4 text-right">Next &rarr;</a>
+            
+        </nav>
+        <div>
+            <div class="col-md-6 col-xs-6 text-left">
+                
+                AngularJs 插件集
+                
+            </div>
+            <div class="col-md-6 col-xs-6 text-right">
+                
+                AngularJs Http 请求拦截器
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!--end body-->
+            <!--begin comments-->
+            
+<div class="comments">
+    
+
+    
+    
+<div id="gitalk-container">
+</div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script>
+    var loadJs = function (d, a) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document
+            .documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("src", d);
+        if (typeof a === "function") {
+            if (window.attachEvent) {
+                b.onreadystatechange = function () {
+                    var e = b.readyState;
+                    if (e === "loaded" || e === "complete") {
+                        b.onreadystatechange = null;
+                        a()
+                    }
+                }
+            } else {
+                b.onload = a
+            }
+        }
+        c.appendChild(b)
+    };
+    loadJs("https://unpkg.com/gitalk/dist/gitalk.min.js", function () {
+        var gitalk = new Gitalk({
+            clientID: 'e82b50d554e32a851ae7',
+            clientSecret: '95923aeaddb44e6de22d088703c6bbde978f505c',
+            repo: 'objectyan.github.io',
+            owner: 'objectyan',
+            admin: ['objectyan'],
+            id: decodeURIComponent(location.pathname),
+            distractionFreeMode: false
+        })
+
+        gitalk.render('gitalk-container')
+    });
+</script>
+
+</div>
+
+
+            <!--end comments-->
+        </div>
+    </div>
+
+    <!--begin footer-->
+    <footer id="footer" class="footer animated fadeInUp hide">
+    <p><i class="copy">&copy;</i> 2024 1111 <a href="http://objectyan.github.io">OY</a> All Right Reserved.</p>
+    <p>Powered by <a href="http://hexo.io" rel="external nofollow">Hexo</a>. Theme by <a href="https://github.com/objectyan/hexo-theme-hannah" rel="external nofollow">hannah</a></p>
+</footer>
+    <!--end footer-->
+
+    
+    <!-- scripts list from theme config.yml -->
+    
+    <script src="/js/hannah.js"></script>
+    
+    
+    <!--begin analytics-->
+    
+<script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?f18fb69801f0f64138e5b6cae4b1c6cc";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+    <!--end analytics-->
+</body>
+<!--end body-->
+<!--begin canvas-nest-->
+<script>
+    var nesturl = "https://unpkg.com/canvas-nest.js/dist/canvas-nest.js";
+    var c = document.getElementsByTagName("body")[0] || document.body || document.documentElement;
+    var b = document.createElement("script");
+    b.setAttribute("type", "text/javascript");
+    b.setAttribute("src", nesturl);
+    b.setAttribute("color",
+        `${ Math.floor(Math.random()*256)},${ Math.floor(Math.random()*256)},${ Math.floor(Math.random()*256)}`);
+    b.setAttribute("opacity", Math.random());
+    b.setAttribute("count", parseInt((Math.random() * 500) || 99));
+    c.appendChild(b)
+</script>
+<!--end canvas-nest-->
+
+</html>
